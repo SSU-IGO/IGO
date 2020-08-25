@@ -27,11 +27,21 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+>>>>>>> 2cb3189867d4bf29256ed866501a987c30bee074
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+<<<<<<< HEAD
 //hellohi
+=======
+
+>>>>>>> 2cb3189867d4bf29256ed866501a987c30bee074
 public class Add_Person extends AppCompatActivity {
     EditText enter_name;
     EditText enter_address;
