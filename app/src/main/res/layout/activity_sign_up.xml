@@ -17,7 +17,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/signup_design">
+            android:background="@drawable/app_menu_color">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,21 +58,13 @@
 
         <EditText
             android:id="@+id/inputEmailCheck"
-            android:layout_width="210dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_below="@+id/textEmailCheck"
             android:layout_alignLeft="@+id/textEmailCheck"
             android:hint="이메일을 입력하세요"
             android:inputType="textEmailAddress"
             android:layout_centerHorizontal="true" />
-
-        <Button
-            android:id="@+id/emailConfirmButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/inputEmailCheck"
-            android:layout_toRightOf="@+id/inputEmailCheck"
-            android:text="인증" />
 
         <TextView
             android:id="@+id/textPassword"
@@ -135,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/inputBirth"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/app_color"
             android:text="가입하기"
             android:textSize="25dp" />
 

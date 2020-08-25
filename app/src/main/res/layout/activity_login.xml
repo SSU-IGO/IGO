@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/signup_design">
+        android:background="@drawable/app_menu_color">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +47,7 @@
         android:id="@+id/loginButton"
         android:layout_marginRight="@dimen/margin2"
         android:layout_below="@+id/login_password"
+        android:background="@drawable/app_color"
         android:layout_toStartOf="@+id/signupButton" />
 
     <Button
@@ -56,25 +57,15 @@
         android:text="회원 가입"
         android:layout_marginRight="@dimen/margin2"
         android:layout_alignTop="@+id/loginButton"
+        android:background="@drawable/app_color"
         android:layout_alignEnd="@+id/login_password" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아이디 찾기"
-        android:background="#00ff0000"
-        android:id="@+id/findAccount"
-        android:layout_marginRight="@dimen/margin2"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/loginButton"
-        android:layout_toLeftOf="@id/findPassword"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호 찾기"
         android:background="#00ff0000"
-        android:id="@+id/findPassword"
+        android:id="@+id/findPwBtn"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/loginButton"
         android:layout_alignRight="@id/signupButton" />

@@ -33,15 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewById(R.id.signupButton).setOnClickListener(onClickListener);
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
-
+        findViewById(R.id.findPwBtn).setOnClickListener(onClickListener);
         firebaseAuth = firebaseAuth.getInstance();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -49,10 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.signupButton:
-                    startSignUpActivity();
+                    myStartActivity(SignUpActivity.class);
                     break;
                 case R.id.loginButton:
                     logIn();
+                    break;
+                case R.id.findPwBtn:
+                    myStartActivity(FindPasswordActivity.class);
                     break;
             }
         }
@@ -70,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startToast("로그인 성공");
-                                    startMainActivity();
+                                    finish();
                                 } else {
                                     if(task.getException() != null){
                                         startToast("Email 또는 비밀번호를 확인하세요");
@@ -87,13 +83,8 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private  void startSignUpActivity(){
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    private  void startMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    private  void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
         //main 액티비티로 들어간 후 뒤로가기 시 앱 종료
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

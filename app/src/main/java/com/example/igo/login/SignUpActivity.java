@@ -54,12 +54,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-    }
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -92,10 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startToast("회원가입 성공");
-                                    startLoginActivity();
+                                    myStartActivity(LoginActivity.class);
                                 } else {
                                     if(task.getException() != null){
-                                        startToast("회원가입 실패");
+                                        startToast("이미 등록된 이메일입니다.");
                                     }
                                 }
                             }
@@ -103,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        }else {
             //현재날짜로 초기화
             Birth.init(Birth.getYear(), Birth.getMonth(), Birth.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
                 @Override
@@ -114,33 +108,31 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
 
-            if(TextUtils.isEmpty(name)) {
-                Toast.makeText(SignUpActivity.this, "이름을 입력하세요",Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(SignUpActivity.this, "이름을 입력하세요", Toast.LENGTH_SHORT).show();
                 nameEditText.requestFocus();
                 return;
             }
 
-            if(TextUtils.isEmpty(email)) {
-                Toast.makeText(SignUpActivity.this, "Email을 입력하세요",Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(SignUpActivity.this, "Email을 입력하세요", Toast.LENGTH_SHORT).show();
                 emailEditText.requestFocus();
                 return;
             }
 
-            if(TextUtils.isEmpty(password)) {
-                Toast.makeText(SignUpActivity.this, "비밀번호를 입력하세요",Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(SignUpActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
                 passwordEditText.requestFocus();
                 return;
-            }
-            else if(TextUtils.isEmpty(passwordCheck)) {
-                Toast.makeText(SignUpActivity.this, "비밀번호 확인을 입력하세요",Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(passwordCheck)) {
+                Toast.makeText(SignUpActivity.this, "비밀번호 확인을 입력하세요", Toast.LENGTH_SHORT).show();
                 pwConfirmEditText.requestFocus();
                 return;
             }
 
-            if(isChanged) {
+            if (isChanged) {
                 Toast.makeText(SignUpActivity.this, "생년월일을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 
@@ -148,8 +140,10 @@ public class SignUpActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private  void startLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
+    private  void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        //main 액티비티로 들어간 후 뒤로가기 시 앱 종료
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }
