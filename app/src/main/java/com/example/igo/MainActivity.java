@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         search_name = findViewById(R. id.search_name);
-        search_btn = findViewById(R. id.search_btn);
         add_person_btn = findViewById(R. id.add_person_btn);
 
        // memberName_list = (ListView) findViewById(R.id.memberName_list);

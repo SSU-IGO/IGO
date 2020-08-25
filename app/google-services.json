@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "145511997419",
+    "firebase_url": "https://ssu-igo-2f1f6.firebaseio.com",
+    "project_id": "ssu-igo-2f1f6",
+    "storage_bucket": "ssu-igo-2f1f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145511997419:android:77c953f606e096c55143ae",
+        "android_client_info": {
+          "package_name": "com.example.igo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145511997419-3m5fe54jmho71j1h3kqkt4f68dnm8bsk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.igo",
+            "certificate_hash": "eb5aa85931139b4cac432291f1f022eb45294fae"
+          }
+        },
+        {
+          "client_id": "145511997419-nfjb72lua0cp1oa042u7rhnsb71l6oc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv-5cBup_mhNPtMs_-0CFT4FperPpubXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145511997419-nfjb72lua0cp1oa042u7rhnsb71l6oc1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
