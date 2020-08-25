@@ -25,7 +25,6 @@ public class SubMainActivity extends AppCompatActivity {
     private Frag_top_member frag02; //네이게이션 화면 변경
     private Frag_top_check frag03;
 
-    private Button addButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
