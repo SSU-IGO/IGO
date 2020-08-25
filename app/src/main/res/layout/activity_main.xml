@@ -1,18 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/search_name"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="이름 검색"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"/>
+
+    <Button
+        android:id="@+id/search_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="검색"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/search_name"
+        android:layout_marginTop="30dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:text="이름"
+        android:textStyle="bold"
+        android:layout_below="@id/search_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:text="주소"
+        android:textStyle="bold"
+        android:layout_below="@id/search_name"
+        android:layout_toRightOf="@id/textView"
+        android:layout_toEndOf="@id/textView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:text="상태"
+        android:textStyle="bold"
+        android:layout_below="@id/search_name"
+        android:layout_toEndOf="@id/textView2"
+        android:layout_toRightOf="@id/textView2"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <Button
+        android:id="@+id/add_person_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="+"
+        android:textStyle="bold" />
+<!--
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/main_activity_background"
+        />
+
+
+
+    <Button
+        android:id="@+id/refresh_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="R"
+        android:textStyle="bold" />
+
+
+    <ListView
+        android:id="@+id/memberName_list"
+        android:layout_width="50dp"
+        android:layout_height="500dp" />
+
+    <ListView
+        android:id="@+id/memberAddress_list"
+        android:layout_width="130dp"
+        android:layout_height="500dp" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/colorAccent" /> -->
+
+</RelativeLayout>

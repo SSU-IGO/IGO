@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_Person">
+
+
+
+    <RadioButton
+        android:id="@+id/checkBox_male"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="남성"
+        android:onClick="onRadioButtonClicked"
+        android:layout_below="@id/birthdate_btn"
+        android:layout_toRightOf="@id/text_gender"
+        android:layout_toEndOf="@id/text_gender"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"/>
+
+    <RadioButton
+        android:id="@+id/checkBox_female"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="여성"
+        android:onClick="onRadioButtonClicked"
+        android:layout_below="@id/birthdate_btn"
+        android:layout_toRightOf="@id/checkBox_male"
+        android:layout_toEndOf="@id/checkBox_male"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/text_main"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="새로운 환자 정보 입력"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="100dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:text="이름"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="157dp"
+        android:layout_below="@id/text_main"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/enter_name"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:hint="입력"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="147dp"
+        android:layout_below="@id/text_main"
+        android:layout_toEndOf="@id/text_name"
+        android:layout_toRightOf="@id/text_name"
+        android:layout_marginLeft="30dp" />
+
+    <TextView
+        android:id="@+id/text_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생년월일"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@id/text_name"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/text_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성별"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_below="@id/text_birthdate"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"/>
+
+
+
+
+
+    <DatePicker
+        android:id="@+id/birthdate_btn"
+        android:layout_width="450dp"
+        android:layout_height="80dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:spinnersShown="true"
+        android:layout_below="@id/enter_name"
+        android:layout_toRightOf="@id/text_birthdate"
+        android:layout_toEndOf="@id/text_birthdate"/>
+
+
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주소"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="258dp"
+        android:layout_below="@id/text_gender"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/enter_address"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="입력"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="237dp"
+        android:layout_below="@id/checkBox_male"
+        android:layout_toEndOf="@id/text_address"
+        android:layout_toRightOf="@id/text_address"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/text_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="303dp"
+        android:layout_below="@id/text_address"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/enter_contact"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="입력"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="287dp"
+        android:layout_below="@id/enter_address"
+        android:layout_toRightOf="@id/text_contact"
+        android:layout_toEndOf="@id/text_contact" />
+
+    <TextView
+        android:id="@+id/text_notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="특이사항"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="340dp"
+        android:layout_below="@id/text_contact"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/enter_notes"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="입력"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="332dp"
+        android:layout_below="@id/text_contact"
+        android:layout_toRightOf="@id/text_notes"
+        android:layout_toEndOf="@id/text_notes"
+        android:layout_marginTop="9dp"/>
+
+    <TextView
+        android:id="@+id/text_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 첨부"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteY="395dp"
+        android:layout_below="@id/text_notes"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="17dp"/>
+
+    <Button
+        android:id="@+id/takePic_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 촬영"
+        android:layout_toEndOf="@id/text_photo"
+        android:layout_toRightOf="@id/text_photo"
+        android:layout_below="@id/enter_notes"
+        android:layout_marginLeft="10dp"/>
+
+    <Button
+        android:id="@+id/gallerySearch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="갤러리에서 찾기"
+        android:layout_below="@id/enter_notes"
+        android:layout_toRightOf="@id/takePic_btn"
+        android:layout_toEndOf="@id/takePic_btn"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/done_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:layout_above="@id/text_main"
+        android:layout_toRightOf="@id/text_main"
+        android:layout_toEndOf="@id/text_main"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="-60dp"/>
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/text_photo"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="30dp"/>
+
+    <!--
+    <Button
+        android:id="@+id/birthdate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생년월일 설정"
+        android:layout_below="@id/text_name"
+        android:layout_toRightOf="@id/text_birthdate"
+        android:layout_toEndOf="@id/text_birthdate"
+        android:layout_marginLeft="10dp"
+        android:onClick="OnClickHandler"/>
+        -->
+
+</RelativeLayout>
