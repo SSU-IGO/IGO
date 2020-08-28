@@ -27,9 +27,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,6 +82,13 @@ public class Add_Person extends AppCompatActivity {
         gallerySearch_btn = findViewById(R.id.gallerySearch_btn);
         birthdate_btn = findViewById(R.id.birthdate_btn);
 
+        Button add = (Button)findViewById(R.id.add_ybtn);
+        add.setOnClickListener(new View.OnClickListener() { //확인버튼 누를 시 이전 화면으로 돌아감
+            @Override
+            public void onClick(View view) {
+                Add_Person.super.onBackPressed();
+            }
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //카메라 권한 요청
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
