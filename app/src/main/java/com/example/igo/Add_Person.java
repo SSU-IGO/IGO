@@ -31,7 +31,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 public class Add_Person extends AppCompatActivity {
     EditText enter_name;
     EditText enter_address;
