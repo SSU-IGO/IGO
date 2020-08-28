@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/list"
+        android:enabled="true"
+        android:icon="@drawable/list"
+        android:title="고객" />
+
+    <item
+        android:id="@+id/add"
+        android:enabled="true"
+        android:icon="@drawable/add"
+        android:title="고객추가"/>
+
+    <item
+        android:id="@+id/member"
+        android:enabled="true"
+        android:icon="@drawable/mem"
+        android:title="회원정보" />
+</menu>

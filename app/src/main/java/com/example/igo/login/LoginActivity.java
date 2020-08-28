@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.igo.R;
+import com.example.igo.SubMainActivity;
 import com.example.igo.main.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,7 +67,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startToast("로그인 성공");
-                                    finish();
+                                    myStartActivity(SubMainActivity.class);
+                   //                 finish();
                                 } else {
                                     if(task.getException() != null){
                                         startToast("Email 또는 비밀번호를 확인하세요");
