@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,6 +28,15 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+/*import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+*/
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +54,8 @@ public class Add_Person extends AppCompatActivity {
     ImageView image_view;
     TextView birthdate_view;
 
+    boolean temp_gender;
+    boolean gender;
     final static int TAKE_PICTURE = 1;
     final String TAG = getClass().getSimpleName();
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -72,8 +84,9 @@ public class Add_Person extends AppCompatActivity {
         enter_contact = findViewById(R.id.enter_contact);
         enter_notes = findViewById(R.id.enter_notes);
 
-
-
+        /*StorageReference mStorageRef;
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+*/
         image_view = findViewById(R.id.image_view);
 
         done_btn = findViewById(R.id.done_btn);
@@ -81,6 +94,7 @@ public class Add_Person extends AppCompatActivity {
         gallerySearch_btn = findViewById(R.id.gallerySearch_btn);
         birthdate_btn = findViewById(R.id.birthdate_btn);
 
+        /*
         Button add = (Button)findViewById(R.id.add_ybtn);
         add.setOnClickListener(new View.OnClickListener() { //확인버튼 누를 시 이전 화면으로 돌아감
             @Override
@@ -88,6 +102,7 @@ public class Add_Person extends AppCompatActivity {
                 Add_Person.super.onBackPressed();
             }
         });
+         */
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //카메라 권한 요청
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -128,36 +143,52 @@ public class Add_Person extends AppCompatActivity {
         });
 
 
-/*
+
         done_btn.setOnClickListener(new View.OnClickListener() {            //완료 버튼 누를 시 데이터 업로드
             @Override
             public void onClick(View view) {
-                MemberInfo member;
-                member = new MemberInfo();
-                member.name = enter_name.getText().toString();
-                member.address = enter_address.getText().toString();
-                member.contact = enter_contact.getText().toString();
-                member.notes = enter_notes.getText().toString();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                if (checkBox_male.isChecked()) {
-                    member.gender = true;
-                } else if (checkBox_female.isChecked()) {
-                    member.gender = false;
+                String name = enter_name.getText().toString();
+                String address = enter_address.getText().toString();
+                String contact = enter_contact.getText().toString();
+                String notes = enter_notes.getText().toString();
+
+
+                if (temp_gender == true) {
+                    gender = true;
+                } else if (temp_gender == false) {
+                    gender = false;
                 }
 
+                /*
+                StorageReference storageRef = storage.getReference();
+                StorageReference imagesRef = storageRef.child("images");
 
-                Intent intent2 = new Intent(Add_Person.this, MainActivity.class);
-                intent2.putExtra(member.name, member.name);
-                intent2.putExtra(member.birthdate, member.birthdate);
-                intent2.putExtra(member.address, member.address);
-                intent2.putExtra(member.contact, member.contact);
-                intent2.putExtra(member.notes, member.notes);
+                image_view.setDrawingCacheEnabled(true);
+                image_view.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) image_view.getDrawable()).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+                UploadTask uploadTask = storageRef.putBytes(data);                                       //사진을 클라우드 저장소에 업로드
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        startToast("사진 업로드에 실패하였습니다.");
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                startActivity(intent2);
+                    }
+                });
+
+*/
             }
         });
 
-*/
+
 
     }
 
@@ -169,12 +200,13 @@ public class Add_Person extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.checkBox_male:
                 if (checked)
+                    temp_gender = true;
+                break;
 
-                    break;
             case R.id.checkBox_female:
                 if (checked)
-
-                    break;
+                    temp_gender = false;
+                break;
         }
     }
 
@@ -188,7 +220,9 @@ public class Add_Person extends AppCompatActivity {
     }
 
 
-
+    private  void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 
 
 
@@ -196,40 +230,34 @@ public class Add_Person extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == REQUEST_CODE) {          //갤러리에서 사진 가져오기
-                if (resultCode == RESULT_OK) {
-                    try {
-                        InputStream in = getContentResolver().openInputStream(data.getData());
+        if (requestCode == REQUEST_CODE) {          //갤러리에서 사진 가져오기
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
 
-                        Bitmap img = BitmapFactory.decodeStream(in);
-                        in.close();
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
 
-                        image_view.setImageBitmap(img);
-                        image_view.setRotation(90);
-                    } catch (Exception e) {
+                    image_view.setImageBitmap(img);
+                    image_view.setRotation(90);
+                } catch (Exception e) {
 
-                    }
-                } else if (resultCode == RESULT_CANCELED) {
-                    Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
                 }
-            }
-
-            switch (requestCode) {              //찍은 사진 표시
-                case TAKE_PICTURE:
-                    if (resultCode == RESULT_OK && data.hasExtra("data")) {
-                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                        if (bitmap != null) {
-                            image_view.setImageBitmap(bitmap);
-                            image_view.setRotation(90);
-                        }
-                    }
-                    break;
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
             }
         }
+
+        switch (requestCode) {              //찍은 사진 표시
+            case TAKE_PICTURE:
+                if (resultCode == RESULT_OK && data.hasExtra("data")) {
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    if (bitmap != null) {
+                        image_view.setImageBitmap(bitmap);
+                        image_view.setRotation(90);
+                    }
+                }
+                break;
+        }
     }
-
-
-
-
-
-
+}
