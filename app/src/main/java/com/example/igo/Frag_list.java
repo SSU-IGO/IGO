@@ -1,5 +1,6 @@
 package com.example.igo;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,14 +17,19 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.R.layout.simple_list_item_1;
 
 public class Frag_list extends ListFragment {
     private View view;
+    private ListView listView;
     private ListViewAdapter adapter;
+    private List<ListViewItem> patientList;
 
    // public String name() {
   //      return getArguments().getString("name");
@@ -36,18 +42,17 @@ public class Frag_list extends ListFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag_list, container, false);
-
-        adapter = new ListViewAdapter();
+   
+  /*      adapter = new ListViewAdapter();
         setListAdapter(adapter);
         adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), "조홍래","333-3333","긴급!");
      //   adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), name(),phone(),"정상");
+        //return view;*/
 
         return super.onCreateView(inflater,container,savedInstanceState);
-        //return view;
     }
 
-    @Override
+  /*  @Override
     public void onListItemClick (ListView l, View v, int position, long id) {
         // get TextView's Text.
    //     adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), "조홍래","333-3333","긴급!");
@@ -61,5 +66,5 @@ public class Frag_list extends ListFragment {
 
     public void addItem(Drawable icon, String name, String phone, String state) {
         adapter.addItem(icon, name, phone, state);
-    }
+    }*/
 }

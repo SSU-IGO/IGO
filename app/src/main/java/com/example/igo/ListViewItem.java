@@ -35,4 +35,11 @@ public class ListViewItem {
     public String getState() {
         return this.stateStr;
     }
+
+    public ListViewItem(Drawable icon, String name, String phone, String state) {
+        this.iconDrawable = icon;
+        this.nameStr = name;
+        this.phoneStr = phone;
+        this.stateStr = state;
+    }
 }
