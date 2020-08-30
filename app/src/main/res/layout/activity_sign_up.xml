@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/inputBirth"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/app_color"
+            android:background="@drawable/btn_bg_ex"
             android:text="가입하기"
             android:textSize="25dp" />
 

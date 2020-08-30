@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFF">
+    android:background="@drawable/login_background">
 
     <LinearLayout
         android:id="@+id/signup_toolbar"
@@ -47,7 +47,7 @@
         android:id="@+id/loginButton"
         android:layout_marginRight="@dimen/margin2"
         android:layout_below="@+id/login_password"
-        android:background="@drawable/app_color"
+        android:background="@drawable/btn_bg_ex"
         android:layout_toStartOf="@+id/signupButton" />
 
     <Button
@@ -57,7 +57,7 @@
         android:text="회원 가입"
         android:layout_marginRight="@dimen/margin2"
         android:layout_alignTop="@+id/loginButton"
-        android:background="@drawable/app_color"
+        android:background="@drawable/btn_bg_ex"
         android:layout_alignEnd="@+id/login_password" />
 
     <Button
