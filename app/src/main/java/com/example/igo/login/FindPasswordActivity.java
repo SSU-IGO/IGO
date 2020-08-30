@@ -61,6 +61,7 @@ public class FindPasswordActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 startToast("이메일을 보냈습니다.");
+                                finish();
                             }
                         }
                     });

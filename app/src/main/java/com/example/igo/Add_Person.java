@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,12 +13,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,8 +23,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.IOException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.InputStream;
 
 public class Add_Person extends AppCompatActivity {
@@ -40,6 +37,7 @@ public class Add_Person extends AppCompatActivity {
     Button gallerySearch_btn;
     Button done_btn;
     DatePicker birthdate_btn;
+    boolean temp_gender;
 
     ImageView image_view;
     TextView birthdate_view;
@@ -49,7 +47,6 @@ public class Add_Person extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     private static final int REQUEST_CODE = 0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
 
 
     class MemberInfo {
@@ -64,24 +61,23 @@ public class Add_Person extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__person);
+        setContentView(R.layout.activity_add_person);
 
 
-        enter_name = findViewById(R.id.enter_name);
-        enter_address = findViewById(R.id.enter_address);
-        enter_contact = findViewById(R.id.enter_contact);
-        enter_notes = findViewById(R.id.enter_notes);
-
+        enter_name = findViewById(R.id.add_person_name);
+        enter_address = findViewById(R.id.add_person_address);
+        enter_contact = findViewById(R.id.add_person_phone);
+        enter_notes = findViewById(R.id.add_person_notes);
 
 
         image_view = findViewById(R.id.image_view);
 
-        done_btn = findViewById(R.id.done_btn);
-        takePic_btn = findViewById(R.id.takePic_btn);
-        gallerySearch_btn = findViewById(R.id.gallerySearch_btn);
-        birthdate_btn = findViewById(R.id.birthdate_btn);
+        done_btn = findViewById(R.id.add_person_done_btn);
+        takePic_btn = findViewById(R.id.add_person_takePic_btn);
+        gallerySearch_btn = findViewById(R.id.add_person_gallerySearch_btn);
+        birthdate_btn = findViewById(R.id.add_person_birth_btn);
 
-        Button add = (Button)findViewById(R.id.add_ybtn);
+        Button add = (Button) findViewById(R.id.add_ybtn);
         add.setOnClickListener(new View.OnClickListener() { //확인버튼 누를 시 이전 화면으로 돌아감
             @Override
             public void onClick(View view) {
@@ -105,7 +101,7 @@ public class Add_Person extends AppCompatActivity {
                 Toast.makeText(Add_Person.this, strDate, Toast.LENGTH_SHORT).show();
             }
         };
-        DatePicker datePicker = (DatePicker) findViewById(R.id.birthdate_btn);
+        DatePicker datePicker = (DatePicker) findViewById(R.id.add_person_birth_btn);
 
 
         takePic_btn.setOnClickListener(new View.OnClickListener() {         //사진 촬영 버튼
@@ -128,37 +124,54 @@ public class Add_Person extends AppCompatActivity {
         });
 
 
-/*
         done_btn.setOnClickListener(new View.OnClickListener() {            //완료 버튼 누를 시 데이터 업로드
             @Override
             public void onClick(View view) {
-                MemberInfo member;
-                member = new MemberInfo();
-                member.name = enter_name.getText().toString();
-                member.address = enter_address.getText().toString();
-                member.contact = enter_contact.getText().toString();
-                member.notes = enter_notes.getText().toString();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                if (checkBox_male.isChecked()) {
-                    member.gender = true;
-                } else if (checkBox_female.isChecked()) {
-                    member.gender = false;
+                String name = enter_name.getText().toString();
+                String address = enter_address.getText().toString();
+                String contact = enter_contact.getText().toString();
+                String notes = enter_notes.getText().toString();
+
+                /*
+                if (temp_gender == true) {
+                    gender = true;
+                } else if (temp_gender == false) {
+                    gender = false;
                 }
 
+                FirebaseFireStore db = FirebaseFirestore.getInstance();
 
-                Intent intent2 = new Intent(Add_Person.this, MainActivity.class);
-                intent2.putExtra(member.name, member.name);
-                intent2.putExtra(member.birthdate, member.birthdate);
-                intent2.putExtra(member.address, member.address);
-                intent2.putExtra(member.contact, member.contact);
-                intent2.putExtra(member.notes, member.notes);
+                MemberInfo memberInfo = new MemberInfo(name, address, contact, notes, gender);
 
-                startActivity(intent2);
+                if (user != null) {                                                                     //환자 정보를 서버에 업로드
+                    ((FirebaseFirestore) db).collection("users").document(user.getUid()).set(memberInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    startToast("환자 정보 등록을 성공하였습니다.");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    startToast("환자 정보 등록에 실패하였습니다.");
+                                }
+                            });
+
+
+                }*/
             }
         });
 
-*/
+    }
 
+    // 뒤로가기 누르면 바로 종료료
+   @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     public void onRadioButtonClicked(View view) {       //성별 설정 Radio Button
@@ -169,12 +182,12 @@ public class Add_Person extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.checkBox_male:
                 if (checked)
-
-                    break;
+                    temp_gender = true;
+                break;
             case R.id.checkBox_female:
                 if (checked)
-
-                    break;
+                    temp_gender = false;
+                break;
         }
     }
 
@@ -188,45 +201,46 @@ public class Add_Person extends AppCompatActivity {
     }
 
 
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == REQUEST_CODE) {          //갤러리에서 사진 가져오기
-                if (resultCode == RESULT_OK) {
-                    try {
-                        InputStream in = getContentResolver().openInputStream(data.getData());
+        if (requestCode == REQUEST_CODE) {          //갤러리에서 사진 가져오기
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
 
-                        Bitmap img = BitmapFactory.decodeStream(in);
-                        in.close();
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
 
-                        image_view.setImageBitmap(img);
-                        image_view.setRotation(90);
-                    } catch (Exception e) {
+                    image_view.setImageBitmap(img);
+                    image_view.setRotation(90);
+                } catch (Exception e) {
 
-                    }
-                } else if (resultCode == RESULT_CANCELED) {
-                    Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
                 }
-            }
-
-            switch (requestCode) {              //찍은 사진 표시
-                case TAKE_PICTURE:
-                    if (resultCode == RESULT_OK && data.hasExtra("data")) {
-                        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                        if (bitmap != null) {
-                            image_view.setImageBitmap(bitmap);
-                            image_view.setRotation(90);
-                        }
-                    }
-                    break;
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
             }
         }
+
+        switch (requestCode) {              //찍은 사진 표시
+            case TAKE_PICTURE:
+                if (resultCode == RESULT_OK && data.hasExtra("data")) {
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    if (bitmap != null) {
+                        image_view.setImageBitmap(bitmap);
+                        image_view.setRotation(90);
+                    }
+                }
+                break;
+        }
     }
+
+    private  void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+}
 
 
 
