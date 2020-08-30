@@ -12,19 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemIconTint="#0C3A0E"
-        app:itemTextColor="#0C3A0E"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_bar"
         app:layout_constraintVertical_bias="1.0"
-        android:background="#ffffff"
+        android:background="@drawable/app_color"
         app:menu="@menu/menu"
         tools:layout_editor_absoluteX="-16dp" />
 
     <FrameLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="@dimen/toolbar_height"
         app:layout_constraintStart_toStartOf="parent"
         android:background="#ffffff"
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
