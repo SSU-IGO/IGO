@@ -130,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                 return;
             }
 
-            if (isChanged) {
+            if (!isChanged) {
                 Toast.makeText(SignUpActivity.this, "생년월일을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             }
         }

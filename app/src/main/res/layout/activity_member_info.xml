@@ -195,7 +195,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
-                    android:text="세부사항"
+                    android:text="특이사항"
                     android:textColor="#000000"
                     android:textSize="15sp" />
             </LinearLayout>

@@ -28,17 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Add_Person" />
+        <activity android:name=".data.Add_Person" />
         <activity android:name=".login.SignUpActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.FindPasswordActivity" />
         <activity android:name=".main.MainActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Add_frame"/>
-        <activity android:name=".Edit_frame"/>
-        <activity android:name=".Member_Info"/>
-        <activity android:name=".data.AddMemberActivity" />
-        
+        <activity android:name=".main.Add_frame"/>
+        <activity android:name=".main.Edit_frame"/>
+        <activity android:name=".main.Member_Info"/>
+
     </application>
 
 </manifest>

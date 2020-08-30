@@ -1,4 +1,4 @@
-package com.example.igo;
+package com.example.igo.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.igo.R;
+import com.example.igo.data.Add_Person;
 
 public class Frag_top_list extends Fragment {
 

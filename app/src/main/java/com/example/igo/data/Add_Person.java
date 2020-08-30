@@ -1,26 +1,16 @@
-package com.example.igo;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
+package com.example.igo.data;
 
 import android.Manifest;
 import android.content.Intent;
-
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,23 +18,32 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.example.igo.R;
+import com.example.igo.main.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-/*import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-*/
+
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+
+
 
 public class Add_Person extends AppCompatActivity {
     EditText enter_name;
     EditText enter_address;
-    EditText enter_contact;
+    EditText enter_phone;
     EditText enter_notes;
     Button takePic_btn;
     Button gallerySearch_btn;
@@ -53,56 +52,41 @@ public class Add_Person extends AppCompatActivity {
 
     ImageView image_view;
     TextView birthdate_view;
-
+    String birthString;
+    Date birthDate;
+    String birthdate;
     boolean temp_gender;
-    boolean gender;
+    String gender;
     final static int TAKE_PICTURE = 1;
     final String TAG = getClass().getSimpleName();
     static final int REQUEST_TAKE_PHOTO = 1;
     private static final int REQUEST_CODE = 0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private FirebaseAuth firebaseAuth;
 
 
-
-    class MemberInfo {
-        String name;
-        String birthdate;
-        String address;
-        String contact;
-        String notes;
-        Boolean gender;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__person);
+        setContentView(R.layout.activity_add_person);
 
 
-        enter_name = findViewById(R.id.enter_name);
-        enter_address = findViewById(R.id.enter_address);
-        enter_contact = findViewById(R.id.enter_contact);
-        enter_notes = findViewById(R.id.enter_notes);
+        enter_name = findViewById(R.id.add_person_enter_name);
+        enter_address = findViewById(R.id.add_person_enter_address);
+        enter_phone = findViewById(R.id.add_person_enter_phone);
+        enter_notes = findViewById(R.id.add_person_enter_notes);
 
-        /*StorageReference mStorageRef;
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-*/
-        image_view = findViewById(R.id.image_view);
 
-        done_btn = findViewById(R.id.done_btn);
-        takePic_btn = findViewById(R.id.takePic_btn);
-        gallerySearch_btn = findViewById(R.id.gallerySearch_btn);
-        birthdate_btn = findViewById(R.id.birthdate_btn);
 
-        /*
-        Button add = (Button)findViewById(R.id.add_ybtn);
-        add.setOnClickListener(new View.OnClickListener() { //확인버튼 누를 시 이전 화면으로 돌아감
-            @Override
-            public void onClick(View view) {
-                Add_Person.super.onBackPressed();
-            }
-        });
-         */
+        image_view = findViewById(R.id.add_person_image_view);
+
+        done_btn = findViewById(R.id.add_person_done_btn);
+        takePic_btn = findViewById(R.id.add_person_takePic_btn);
+        gallerySearch_btn = findViewById(R.id.add_person_gallerySearch_btn);
+        birthdate_btn = (DatePicker) findViewById(R.id.add_person_enter_birthdate);
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //카메라 권한 요청
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -113,14 +97,14 @@ public class Add_Person extends AppCompatActivity {
             }
         }
 
-        DatePicker.OnDateChangedListener listener = new DatePicker.OnDateChangedListener() { //Date Picker 설정
+        birthdate_btn.init(birthdate_btn.getYear(), birthdate_btn.getMonth(), birthdate_btn.getDayOfMonth(), new DatePicker.OnDateChangedListener() { //Date Picker 설정
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String strDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-                Toast.makeText(Add_Person.this, strDate, Toast.LENGTH_SHORT).show();
+                birthString = String.format("%d-%d-%d", birthdate_btn.getYear(), birthdate_btn.getMonth() + 1, birthdate_btn.getDayOfMonth());
+                birthDate = Date.valueOf(birthString);
             }
-        };
-        DatePicker datePicker = (DatePicker) findViewById(R.id.birthdate_btn);
+        });
+
 
 
         takePic_btn.setOnClickListener(new View.OnClickListener() {         //사진 촬영 버튼
@@ -148,22 +132,30 @@ public class Add_Person extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                FirebaseStorage storage = FirebaseStorage.getInstance();
 
                 String name = enter_name.getText().toString();
                 String address = enter_address.getText().toString();
-                String contact = enter_contact.getText().toString();
+                String phone = enter_phone.getText().toString();
                 String notes = enter_notes.getText().toString();
-
+                String birth = birthString;
 
                 if (temp_gender == true) {
-                    gender = true;
+                    gender = "남성";
                 } else if (temp_gender == false) {
-                    gender = false;
+                    gender = "여성";
                 }
 
-                /*
+                MemberInfo memberInfo = new MemberInfo(name, address, phone, notes, gender, birth);
+                db.collection(user.getEmail()).document(name).set(memberInfo);
+
+                myStartActivity(MainActivity.class);
+
+
+
                 StorageReference storageRef = storage.getReference();
-                StorageReference imagesRef = storageRef.child("images");
+                StorageReference imagesRef = storageRef.child(user.getEmail() + '_' + name);
 
                 image_view.setDrawingCacheEnabled(true);
                 image_view.buildDrawingCache();
@@ -171,7 +163,7 @@ public class Add_Person extends AppCompatActivity {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] data = baos.toByteArray();
-                UploadTask uploadTask = storageRef.putBytes(data);                                       //사진을 클라우드 저장소에 업로드
+                UploadTask uploadTask = imagesRef.putBytes(data);                                       //사진을 클라우드 저장소에 업로드
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
@@ -184,7 +176,7 @@ public class Add_Person extends AppCompatActivity {
                     }
                 });
 
-*/
+
             }
         });
 
@@ -198,12 +190,12 @@ public class Add_Person extends AppCompatActivity {
 
         // Check which radio button was clicked
         switch(view.getId()) {
-            case R.id.checkBox_male:
+            case R.id.add_person_checkBox_male:
                 if (checked)
                     temp_gender = true;
                 break;
 
-            case R.id.checkBox_female:
+            case R.id.add_person_checkBox_female:
                 if (checked)
                     temp_gender = false;
                 break;
@@ -224,7 +216,12 @@ public class Add_Person extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-
+    private  void myStartActivity(Class c){
+        Intent intent = new Intent(this, c);
+        //main 액티비티로 들어간 후 뒤로가기 시 앱 종료
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

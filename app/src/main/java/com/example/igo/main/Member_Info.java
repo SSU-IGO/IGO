@@ -1,4 +1,4 @@
-package com.example.igo;
+package com.example.igo.main;
 
 import android.Manifest;
 import android.content.Intent;
