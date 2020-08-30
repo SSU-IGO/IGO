@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.igo.R;
-import com.example.igo.main.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -78,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if(isComplete){
-            if(password.equals((passwordCheck))){
+            if(password.equals(passwordCheck)){
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -95,7 +94,8 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         });
             }else{
-                Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                startToast("비밀번호가 일치하지않습니다.");
+                pwConfirmEditText.requestFocus();
             }
         }else {
             //현재날짜로 초기화
@@ -130,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                 return;
             }
 
-            if (isChanged) {
+            if (!isChanged) {
                 Toast.makeText(SignUpActivity.this, "생년월일을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             }
         }
