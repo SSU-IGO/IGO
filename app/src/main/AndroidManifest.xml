@@ -28,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Loading_Screen" />
         <activity android:name=".Add_Person" />
         <activity android:name=".login.SignUpActivity" />
         <activity android:name=".login.LoginActivity" />
@@ -37,8 +36,9 @@
         <activity android:name=".SubMainActivity" />
         <activity android:name=".Add_frame"/>
         <activity android:name=".Edit_frame"/>
-        <activity android:name=".Member_Info"></activity>
         <activity android:name=".data.AddMemberActivity" />
+        <activity android:name=".SubMainActivity"/>
+        <activity android:name=".Member_Info"/>
     </application>
 
 </manifest>
