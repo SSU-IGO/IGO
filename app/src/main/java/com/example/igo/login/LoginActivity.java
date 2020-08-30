@@ -11,8 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.igo.R;
-import com.example.igo.SubMainActivity;
-import com.example.igo.main.MainActivity;
+import com.example.igo.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -67,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startToast("로그인 성공");
-                                    myStartActivity(SubMainActivity.class);
+                                    myStartActivity(MainActivity.class);
                    //                 finish();
                                 } else {
                                     if(task.getException() != null){

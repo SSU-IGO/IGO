@@ -34,10 +34,10 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.FindPasswordActivity" />
         <activity android:name=".main.MainActivity" />
-        <activity android:name=".SubMainActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Add_frame"/>
         <activity android:name=".Edit_frame"/>
-        <activity android:name=".Member_Info"></activity>
+        <activity android:name=".Member_Info"/>
         <activity android:name=".data.AddMemberActivity" />
     </application>
 
