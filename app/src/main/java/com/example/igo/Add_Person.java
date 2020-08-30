@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -30,6 +33,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 
 public class Add_Person extends AppCompatActivity {
@@ -51,7 +55,7 @@ public class Add_Person extends AppCompatActivity {
     private static final int REQUEST_CODE = 0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-
+   // private Frag_list listFrag;
 
     class MemberInfo {
         String name;
@@ -82,13 +86,11 @@ public class Add_Person extends AppCompatActivity {
         gallerySearch_btn = findViewById(R.id.gallerySearch_btn);
         birthdate_btn = findViewById(R.id.birthdate_btn);
 
-        Button add = (Button)findViewById(R.id.add_ybtn);
-        add.setOnClickListener(new View.OnClickListener() { //확인버튼 누를 시 이전 화면으로 돌아감
-            @Override
-            public void onClick(View view) {
-                Add_Person.super.onBackPressed();
-            }
-        });
+  /*      ArrayList list = new ArrayList();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(android.R.id.content, listFrag);
+        ft.commit();*/
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //카메라 권한 요청
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -99,14 +101,14 @@ public class Add_Person extends AppCompatActivity {
             }
         }
 
-        DatePicker.OnDateChangedListener listener = new DatePicker.OnDateChangedListener() { //Date Picker 설정
+ /*       DatePicker.OnDateChangedListener listener = new DatePicker.OnDateChangedListener() { //Date Picker 설정
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String strDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                 Toast.makeText(Add_Person.this, strDate, Toast.LENGTH_SHORT).show();
             }
         };
-        DatePicker datePicker = (DatePicker) findViewById(R.id.birthdate_btn);
+        DatePicker datePicker = (DatePicker) findViewById(R.id.birthdate_btn); */
 
 
         takePic_btn.setOnClickListener(new View.OnClickListener() {         //사진 촬영 버튼
@@ -128,12 +130,12 @@ public class Add_Person extends AppCompatActivity {
             }
         });
 
-
-/*
-        done_btn.setOnClickListener(new View.OnClickListener() {            //완료 버튼 누를 시 데이터 업로드
+              Button done_btn = findViewById((R.id.done_btn));
+              done_btn.setOnClickListener(new View.OnClickListener() {            //완료 버튼 누를 시 데이터 업로드
             @Override
             public void onClick(View view) {
-                MemberInfo member;
+                Add_Person.super.onBackPressed();
+            /*    MemberInfo member;
                 member = new MemberInfo();
                 member.name = enter_name.getText().toString();
                 member.address = enter_address.getText().toString();
@@ -154,15 +156,12 @@ public class Add_Person extends AppCompatActivity {
                 intent2.putExtra(member.contact, member.contact);
                 intent2.putExtra(member.notes, member.notes);
 
-                startActivity(intent2);
+                startActivity(intent2);*/
             }
         });
-
-*/
-
     }
 
-    public void onRadioButtonClicked(View view) {       //성별 설정 Radio Button
+/*    public void onRadioButtonClicked(View view) {       //성별 설정 Radio Button
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -178,7 +177,7 @@ public class Add_Person extends AppCompatActivity {
                     break;
         }
     }
-
+*/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {       //카메라 권한 요청 2
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -187,10 +186,6 @@ public class Add_Person extends AppCompatActivity {
             Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]);
         }
     }
-
-
-
-
 
 
     @Override
@@ -227,7 +222,7 @@ public class Add_Person extends AppCompatActivity {
                     break;
             }
         }
-    }
+}
 
 
 

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -58,7 +59,6 @@ public class SubMainActivity extends AppCompatActivity {
         frag02 = new Frag_top_member();
         frag03 = new Frag_top_check();
         setFrag(1); //처음 앱 실행시 보여줄 메인 화면 설정
-
     }
 
     private void setFrag(int n) {
