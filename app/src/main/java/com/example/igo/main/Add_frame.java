@@ -1,4 +1,4 @@
-package com.example.igo;
+package com.example.igo.main;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,17 +7,19 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Edit_frame extends AppCompatActivity {
+import com.example.igo.R;
+
+public class Add_frame extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_layout);
+        setContentView(R.layout.add_layout);
 
-        Button edit = (Button)findViewById(R.id.edit_ybtn);
-        edit.setOnClickListener(new View.OnClickListener() {
+        Button add = (Button)findViewById(R.id.add_ybtn);
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Edit_frame.super.onBackPressed();
+                Add_frame.super.onBackPressed();
             }
         });
     }

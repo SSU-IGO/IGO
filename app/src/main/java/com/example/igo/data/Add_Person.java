@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.igo.R;
-import com.example.igo.SubMainActivity;
+import com.example.igo.main.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -150,7 +150,7 @@ public class Add_Person extends AppCompatActivity {
                 MemberInfo memberInfo = new MemberInfo(name, address, phone, notes, gender, birth);
                 db.collection(user.getEmail()).document(name).set(memberInfo);
 
-                myStartActivity(SubMainActivity.class);
+                myStartActivity(MainActivity.class);
 
 
 

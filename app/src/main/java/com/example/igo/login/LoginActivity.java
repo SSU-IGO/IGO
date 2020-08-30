@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.igo.R;
-import com.example.igo.SubMainActivity;
+import com.example.igo.main.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -87,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             startToast("로그인 성공");
-                            myStartActivity(SubMainActivity.class);
+                            myStartActivity(MainActivity.class);
                         } else {
                             startToast("로그인 실패");
                         }
@@ -125,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startToast("로그인 성공");
-                                    myStartActivity(SubMainActivity.class);
+                                    myStartActivity(MainActivity.class);
                                 } else {
                                     if(task.getException() != null){
                                         startToast("Email 또는 비밀번호를 확인하세요");
