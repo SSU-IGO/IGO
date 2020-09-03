@@ -33,9 +33,11 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.FindPasswordActivity" />
         <activity android:name=".main.MainActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".main.Add_frame"/>
         <activity android:name=".main.Edit_frame"/>
         <activity android:name=".main.Member_Info"/>
+
     </application>
 
 </manifest>
