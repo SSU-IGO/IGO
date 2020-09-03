@@ -4,10 +4,186 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/myinfo_profil"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:text="조홍래"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:gravity="right|center_vertical" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:text=" 돌보미"
+                    android:textSize="20dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/app_color_start"/>
+                <Button
+                    android:layout_marginLeft="45dp"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_bg_ex"
+                    android:text="로그아웃"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="e-mail : hongray@naver.com"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp">
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="비밀번호 변경"
+                    android:textColor="@color/app_color_center"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/app_color_center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginLeft="25dp"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="등록한 환자"
+                android:gravity="center_horizontal|bottom"
+                android:textColor="#ffffff" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="3명"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="유의 환자"
+                android:gravity="center_horizontal|bottom"
+                android:textColor="#ffffff" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="1명"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text=" 내 정보 편집"
+                android:gravity="center_horizontal|bottom"
+                android:textColor="#ffffff" />
+            <Button
+                android:id="@+id/edit_info"
+                android:layout_marginTop="7.5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="+"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/btn_bg_ex2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#ffffff"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/toplistbackground_lined">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="걱정마SSU(나홀로가족 케어 시스템) 앱 소개"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/listbackground_lined">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="공지 사항"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원정보 화면입니다."
-        android:textColor="#000000"
-        android:textSize="30dp"/>
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/main">
+    </LinearLayout>
 </LinearLayout>
