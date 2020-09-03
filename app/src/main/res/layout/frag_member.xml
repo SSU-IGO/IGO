@@ -87,7 +87,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="28dp"
             android:layout_width="120dp"
             android:layout_height="70dp"
             android:orientation="vertical">
@@ -134,17 +134,18 @@
                 android:text=" 내 정보 편집"
                 android:gravity="center_horizontal|bottom"
                 android:textColor="#ffffff" />
+
             <Button
                 android:id="@+id/edit_info"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="7.5dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:background="@drawable/btn_bg_ex2"
                 android:gravity="center"
                 android:text="+"
-                android:textSize="15dp"
                 android:textColor="#ffffff"
-                android:background="@drawable/btn_bg_ex2"/>
+                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
 
