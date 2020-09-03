@@ -46,6 +46,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/app_color_start"/>
                 <Button
+                    android:id="@+id/logoutBtn"
                     android:layout_marginLeft="45dp"
                     android:layout_width="80dp"
                     android:layout_height="match_parent"
