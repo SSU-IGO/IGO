@@ -21,6 +21,7 @@ public class Frag_top_list extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.top_list, container, false);
         Button addButton = (Button)view.findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
