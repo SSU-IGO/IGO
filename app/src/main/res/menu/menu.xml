@@ -11,7 +11,7 @@
         android:id="@+id/add"
         android:enabled="true"
         android:icon="@drawable/add"
-        android:title="고객추가"/>
+        android:title="유의고객"/>
 
     <item
         android:id="@+id/member"
