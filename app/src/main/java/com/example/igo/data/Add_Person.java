@@ -147,7 +147,7 @@ public class Add_Person extends AppCompatActivity {
                     gender = "여성";
                 }
 
-                MemberInfo memberInfo = new MemberInfo(name, address, phone, notes, gender, birth);
+                MemberInfo memberInfo = new MemberInfo(name, address, phone, notes, gender, birth, true);
                 db.collection(user.getEmail()).document(name).set(memberInfo);
 
                 myStartActivity(MainActivity.class);

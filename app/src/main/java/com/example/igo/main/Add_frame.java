@@ -13,9 +13,9 @@ public class Add_frame extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_layout);
+        setContentView(R.layout.activity_add_person);
 
-        Button add = (Button)findViewById(R.id.add_ybtn);
+        Button add = (Button)findViewById(R.id.add_person_done_btn);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -7,14 +7,16 @@ public class MemberInfo {
     private String notes;
     private String gender;
     private String birthdate;
+    private boolean flag;
 
-    public MemberInfo(String name, String address, String phone, String notes, String gender, String birthdate){
+    public MemberInfo(String name, String address, String phone, String notes, String gender, String birthdate, boolean flag){
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.notes = notes;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.flag = flag;
     }
     public String getName(){
         return this.name;
@@ -52,4 +54,6 @@ public class MemberInfo {
     public void setBirthdate(String birthdate){
         this.birthdate = birthdate;
     }
+    public boolean getFlag() {return this.flag;}
+    public void setFlag(boolean flag) { this.flag = flag;}
 }
