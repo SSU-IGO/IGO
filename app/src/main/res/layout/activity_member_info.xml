@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/toolbar"
@@ -20,64 +20,69 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-        </LinearLayout>
+            android:layout_height="50dp"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center_vertical">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_image"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="100dp"
-                android:background="@drawable/profil"/>
+                android:background="@drawable/profil" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="140dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"/>
 
             <LinearLayout
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="65dp"
-                    android:layout_height="70dp"
-                    android:layout_gravity="left">
-                    <Button
-                        android:id="@+id/btn_CameraUpload"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal|bottom"
 
-                        android:background="@drawable/profil_edit_button"
-                        android:gravity="center" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="65dp"
-                    android:layout_height="70dp"
-                    android:layout_gravity="right">
+                <Button
+                    android:id="@+id/member_info_btn_map"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="145dp"
+                    android:background="@drawable/pin" />
 
-                    <Button
-                        android:id="@+id/btn_GalleryUpload"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="bottom"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/gallery_upload_btn"
-                        android:gravity="bottom"/>
-                </LinearLayout>
+                <Button
+                    android:id="@+id/member_info_btn_call"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/phone" />
+
+                <Button
+                    android:id="@+id/member_info_btn_edit"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/btn_bg_ex"
+                    android:text="편집"/>
+
+                <Button
+                    android:id="@+id/member_info_btn_delete"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/btn_bg_ex3"
+                    android:text="삭제"/>
 
             </LinearLayout>
 
@@ -122,11 +127,12 @@
                         android:text="이름"
                         android:textColor="#000000"
                         android:textSize="15sp" />
+
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -142,11 +148,12 @@
                         android:text="성별"
                         android:textColor="#000000"
                         android:textSize="15sp" />
+
                     <TextView
                         android:layout_width="50dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -165,11 +172,12 @@
                     android:text="생년월일"
                     android:textColor="#000000"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <LinearLayout
@@ -186,11 +194,12 @@
                     android:text="전화번호"
                     android:textColor="#000000"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <LinearLayout
@@ -207,11 +216,12 @@
                     android:text="거주지"
                     android:textColor="#000000"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <LinearLayout
@@ -228,11 +238,12 @@
                     android:text="특이사항"
                     android:textColor="#000000"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical" />
             </LinearLayout>
         </LinearLayout>
 

@@ -17,7 +17,7 @@ import com.example.igo.data.Add_Person;
 public class Frag_top_list extends Fragment {
 
     private View view;
-    /*
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,5 +33,5 @@ public class Frag_top_list extends Fragment {
         });
         return view;
     }
-    */
+
 }

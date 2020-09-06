@@ -16,12 +16,11 @@ import com.example.igo.R;
 public class Frag_top_member extends Fragment {
 
     private View view;
-    /*
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.top_member, container, false);
         return view;
     }
-    */
 }
