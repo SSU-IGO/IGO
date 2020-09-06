@@ -1,68 +1,71 @@
 package com.example.igo.main;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONObject;
 import com.example.igo.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
-import java.util.List;
+import java.util.ArrayList;
 
+public class Frag_list extends Fragment {
+    private View view;
 
-public class Frag_list extends ListFragment {
-       private View view;
-       private ListView listView;
-       private ListViewAdapter adapter;
-       private List<ListViewItem> patientList;
+    private RecyclerView mRecyclerView;
+    private RecyclerAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<ListItem> mMyData;
 
-       // public String name() {
-       //      return getArguments().getString("name");
-       // }
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseFirestore db;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
 
-   // public String phone() {
-   //     return getArguments().getString("phone");
-  //  }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
-   
-  /*      adapter = new ListViewAdapter();
-        setListAdapter(adapter);
-        adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), "조홍래","333-3333","긴급!");
-     //   adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), name(),phone(),"정상");
-        //return view;*/
+        view = inflater.inflate(R.layout.frag_list, container, false);
 
-        return super.onCreateView(inflater,container,savedInstanceState);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.scrollToPosition(0);
+        mAdapter = new RecyclerAdapter(mMyData);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        return view;
     }
 
-  /*  @Override
-    public void onListItemClick (ListView l, View v, int position, long id) {
-        // get TextView's Text.
-   //     adapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_baseline_account_circle_24), "조홍래","333-3333","긴급!");
-        ListViewItem item = (ListViewItem) l.getItemAtPosition(position) ;
-        String nameStr = item.getName() ;
-        String phoneStr = item.getPhone() ;
-        String stateStr = item.getState();
-        Drawable iconDrawable = item.getIcon() ;
-        // TODO : use item data.
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
-    public void addItem(Drawable icon, String name, String phone, String state) {
-        adapter.addItem(icon, name, phone, state);
-    }*/
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initDataset();
+    }
+
+    private void initDataset() {
+        //for Test
+        mMyData = new ArrayList<>();
+        mMyData.add(new ListItem("조홍래", "JOY MINI (48/50)", "333-3333"));
+        mMyData.add(new ListItem("조홍래", "JOY MINI (48/50)", "444-4444"));
+        mMyData.add(new ListItem("조홍래", "JOY MINI (48/50)", "555.5555"));
+    }
 }
