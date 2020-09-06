@@ -18,15 +18,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        /*
+
         //기존에 로그인이 되어있지않다면
         if (user == null) {
             myStartActivity(LoginActivity.class);
         } else {
             myStartActivity(MainActivity.class);
         }
-        */
-        myStartActivity(LoginActivity.class);
     }
 
     private void myStartActivity(Class c) {
