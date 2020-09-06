@@ -18,10 +18,13 @@ import com.example.igo.data.Add_Person;
 public class Frag_top_list extends Fragment {
 
     private View view;
+
     private Frag_list listFrag;
+  
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.top_list, container, false);
         Button addButton = (Button)view.findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -33,5 +36,4 @@ public class Frag_top_list extends Fragment {
         });
         return view;
     }
-
 }

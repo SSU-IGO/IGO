@@ -76,8 +76,6 @@ public class FindPasswordActivity extends AppCompatActivity {
 
     private  void myStartActivity(Class c){
         Intent intent = new Intent(this, c);
-        //main 액티비티로 들어간 후 뒤로가기 시 앱 종료
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

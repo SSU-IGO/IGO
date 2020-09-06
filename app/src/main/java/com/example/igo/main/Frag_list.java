@@ -32,7 +32,6 @@ public class Frag_list extends Fragment {
     private FirebaseFirestore db;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {

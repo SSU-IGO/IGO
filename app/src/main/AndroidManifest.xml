@@ -36,6 +36,7 @@
         <activity android:name=".main.Add_frame"/>
         <activity android:name=".main.Edit_frame"/>
         <activity android:name=".main.Member_Info"/>
+
     </application>
 
 </manifest>
